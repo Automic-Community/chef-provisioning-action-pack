@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_CHEF.PRV.JOB.BOOTSTRAP@WINDOWS">
+<XHEADER state="1">
+<Title/>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<Active>1</Active>
+<OH_SubType/>
+<CustomAttributes KeyListID="0" dataRequestID="0"/>
+</XHEADER>
+<OUTPUTREG state="1">
+<FileReg/>
+</OUTPUTREG>
+<SYNCREF state="1">
+<Syncs/>
+</SYNCREF>
+<ATTR_JOBS state="1">
+<Queue>CLIENT_QUEUE</Queue>
+<StartType/>
+<HostDst>|&lt;WIN&gt;|HOST</HostDst>
+<HostATTR_Type>WINDOWS</HostATTR_Type>
+<CodeName/>
+<Login/>
+<IntAccount/>
+<ExtRepDef>1</ExtRepDef>
+<ExtRepAll>0</ExtRepAll>
+<ExtRepNone>0</ExtRepNone>
+<AutoDeactNo>1</AutoDeactNo>
+<AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
+<AutoDeactErrorFree>0</AutoDeactErrorFree>
+<DeactWhen/>
+<DeactDelay>0</DeactDelay>
+<AutoDeactAlways>0</AutoDeactAlways>
+<AttDialog>0</AttDialog>
+<ActAtRun>1</ActAtRun>
+<Consumption>0</Consumption>
+<UC4Priority>0</UC4Priority>
+<MaxParallel2>0</MaxParallel2>
+<MpElse1>1</MpElse1>
+<MpElse2>0</MpElse2>
+<TZ/>
+</ATTR_JOBS>
+<ATTR_WINDOWS state="1">
+<OutputDb>1</OutputDb>
+<OutputDbErr>0</OutputDbErr>
+<OutputFile>0</OutputFile>
+<IsGenerated>0</IsGenerated>
+<BAT>1</BAT>
+<COM>0</COM>
+<WinBatch>0</WinBatch>
+<Standard>1</Standard>
+<Minimized>0</Minimized>
+<Maximized>0</Maximized>
+<JObjDefault>0</JObjDefault>
+<JObjYes>1</JObjYes>
+<JObjNo>0</JObjNo>
+<WorkingDirectory>c:\</WorkingDirectory>
+<Command/>
+<LogOn>0</LogOn>
+<ShowJob>0</ShowJob>
+</ATTR_WINDOWS>
+<RUNTIME state="1">
+<MaxRetCode>0</MaxRetCode>
+<MrcExecute/>
+<MrcElseE>0</MrcElseE>
+<FcstStatus>0|U00000000 ??? ""</FcstStatus>
+
+<ErtMethodDef>1</ErtMethodDef>
+<ErtMethodFix>0</ErtMethodFix>
+<ErtFix>0</ErtFix>
+<ErtDynMethod>2|Average</ErtDynMethod>
+<ErtMethodDyn>0</ErtMethodDyn>
+<ErtCnt>0</ErtCnt>
+<ErtCorr>0</ErtCorr>
+<ErtIgn>0</ErtIgn>
+<ErtIgnFlg>0</ErtIgnFlg>
+<ErtMinCnt>0</ErtMinCnt>
+<MrtMethodNone>1</MrtMethodNone>
+<MrtMethodFix>0</MrtMethodFix>
+<MrtFix>0</MrtFix>
+<MrtMethodErt>0</MrtMethodErt>
+<MrtErt>0</MrtErt>
+<MrtMethodDate>0</MrtMethodDate>
+<MrtDays>0</MrtDays>
+<MrtTime>00:00</MrtTime>
+<MrtTZ/>
+<SrtMethodNone>1</SrtMethodNone>
+<SrtMethodFix>0</SrtMethodFix>
+<SrtFix>0</SrtFix>
+<SrtMethodErt>0</SrtMethodErt>
+<SrtErt>0</SrtErt>
+<MrtCancel>0</MrtCancel>
+<MrtExecute>0</MrtExecute>
+<MrtExecuteObj/>
+</RUNTIME>
+<DYNVALUES state="1">
+<dyntree>
+<node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
+<VALUE state="1">
+<Values/>
+<Mode>0</Mode>
+</VALUE>
+</node>
+</dyntree>
+</DYNVALUES>
+<ROLLBACK state="1">
+<RollbackFlag>0</RollbackFlag>
+<CBackupObj/>
+<CRollbackObj/>
+<FBackupPath/>
+<FDeleteBefore>0</FDeleteBefore>
+<FInclSubDirs>0</FInclSubDirs>
+</ROLLBACK>
+<PRE_SCRIPT mode="1" replacementmode="1" state="1">
+<PSCRI><![CDATA[:INCLUDE PCK.ITPA_SHARED.PRV.INCLUDE.PREPARE_JOB]]></PSCRI>
+</PRE_SCRIPT>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[:INCLUDE PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
+
+@echo off
+
+:INCLUDE PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+
+:INCLUDE PCK.AUTOMIC_CHEF.PRV.INCLUDE.CHECK_COMMON_OPTIONS
+
+:SET &UC4RB_BOOTSTRAP_OPTIONS# = ''
+
+:IF &UC4RB_CHEF_NODE_NAME# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = '-N &UC4RB_CHEF_NODE_NAME# '
+:ENDIF
+
+:IF &UC4RB_CHEF_SSH_USER# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-x &UC4RB_CHEF_SSH_USER# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_SSH_PASSWORD# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-P &UC4RB_CHEF_SSH_PASSWORD# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_SSH_GATEWAY# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-G &UC4RB_CHEF_SSH_GATEWAY# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_SSH_PORT# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-p &UC4RB_CHEF_SSH_PORT# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_SSH_KEY_FILE# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-i "&UC4RB_CHEF_SSH_KEY_FILE#" ')
+:ENDIF
+
+:IF &UC4RB_CHEF_OS_TYPE# <> 'Windows'
+:  IF &UC4RB_CHEF_SUDO# = 'YES'
+:    SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '--sudo ')
+:  ENDIF
+:ENDIF
+
+:IF &UC4RB_CHEF_DISTRO# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-D &UC4RB_CHEF_DISTRO# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_JSON_ATTR# <> ''
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-j &UC4RB_CHEF_JSON_ATTR# ')
+:ENDIF
+
+:IF &UC4RB_CHEF_RUN_LIST# <> ''
+:  SET &UC4RB_CHEF_RUN_LIST# = STR_SUB(&UC4RB_CHEF_RUN_LIST#, '"', '\"')
+:  SET &UC4RB_BOOTSTRAP_OPTIONS# = STR_CAT(&UC4RB_BOOTSTRAP_OPTIONS#, '-r "&UC4RB_CHEF_RUN_LIST#" ')
+:ENDIF
+
+
+:IF &UC4RB_CHEF_OS_TYPE# = 'Windows'
+   java -jar "&$AGENT_RESOURCES_CLIENT#itpa-tool.jar" arb -cmd execute knife.bat bootstrap windows winrm &UC4RB_CHEF_FQDN# &UC4RB_BOOTSTRAP_OPTIONS# &UC4RB_CHEF_COMMON_OPTIONS#
+:ELSE
+   java -jar "&$AGENT_RESOURCES_CLIENT#itpa-tool.jar" arb -cmd execute knife.bat bootstrap &UC4RB_CHEF_FQDN# &UC4RB_BOOTSTRAP_OPTIONS# &UC4RB_CHEF_COMMON_OPTIONS#
+:ENDIF
+
+:INCLUDE PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS
+
+knife node show &UC4RB_CHEF_NODE_NAME# -a name &UC4RB_CHEF_COMMON_OPTIONS# > nul 2>&1
+if %errorlevel% NEQ 0 (
+  echo Bootstrap finished unsuccessfully.
+)
+
+:INCLUDE PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS]]></MSCRI>
+</SCRIPT>
+<OUTPUTSCAN state="1">
+<Inherit>N</Inherit>
+<filterobjects/>
+<HostFsc/>
+<LoginFsc/>
+</OUTPUTSCAN>
+<POST_SCRIPT mode="1" replacementmode="1" state="1">
+<OSCRI><![CDATA[
+:IF &UC4RB_CHEF_NODE_NAME# <> ''
+:  SET &UC4RB_OUT_CHEF_NODE_NAME# = &UC4RB_CHEF_NODE_NAME#
+:  PUBLISH &UC4RB_OUT_CHEF_NODE_NAME#, ,'WORKFLOW'
+:ENDIF]]></OSCRI>
+</POST_SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBS_WINDOWS>
+</uc-export>

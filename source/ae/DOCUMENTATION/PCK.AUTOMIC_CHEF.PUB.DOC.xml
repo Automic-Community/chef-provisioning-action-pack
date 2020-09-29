@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<DOCU name="PCK.AUTOMIC_CHEF.PUB.DOC">
+<HEADER state="1">
+<Title/>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<DOCU_Docu state="1" type="text">
+<DOC><![CDATA[Opscode Chef Actions
+
+This actions can be used to control chef. The available functions enables you to provision a new host with chef and control this process from the release manager.
+
+Additionally cookbooks and recipes are available to install the automic agent and service manager and create or update deployment targets.
+
+=Requirements=
+
+- A chef server, Hosted Chef, Private Chef or open source chef 11.x
+- A configured chef workstation with an agent installed
+ 
+
+=Rollback=
+
+The chef actions do not support rollbacks yet.]]></DOC>
+</DOCU_Docu>
+</DOCU>
+</uc-export>
